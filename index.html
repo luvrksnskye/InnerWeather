@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnerWeather</title>
+    <link rel="icon" type="image/x-icon" href="innerweather/visuals/icon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="innerweather/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header section -->
+        <div class="header">
+            <!-- Stars above title -->
+            <div class="stars-container">
+                <img src="innerweather/visuals/stars.gif" class="stars-img" alt="Decorative stars" />
+            </div>
+            
+            <!-- Small cloud behind title -->
+            <div class="small-cloud-container">
+                <img src="innerweather/visuals/small-cloud.png" alt="Small floating cloud" class="small-cloud-img" />
+            </div>
+            
+            <!-- Title image -->
+            <img src="innerweather/visuals/title.png" alt="Emotions Journal" class="title-img" />
+            
+            <!-- Decorative element below title -->
+            <div class="decor-container">
+                <img src="innerweather/visuals/decor.gif" alt="Decorative element" class="decor-img" />
+            </div>
+        </div>
+        
+        <!-- Typing effect message -->
+        <div class="typing-message-container">
+            <p id="typing-text" class="typing-text"></p>
+        </div>
+        
+        <!-- Big cloud at bottom left -->
+        <div class="big-cloud-container">
+            <img src="innerweather/visuals/big-cloud.png" alt="Big floating cloud" class="big-cloud-img" />
+        </div>
+        
+        <!-- Heart Container - Always at top -->
+        <div class="heart-container">
+            <div class="heart-wrap">
+                <div class="heart">
+                    <div class="tank"></div>
+                    <div class="heart-sparkle"></div>
+                    <svg class="curve" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                        </defs>
+                        <g class="wave-group">
+                            <use xlink:href="#gentle-wave" x="48" y="0" class="wave wave-1" />
+                            <use xlink:href="#gentle-wave" x="48" y="1" class="wave wave-2" />
+                            <use xlink:href="#gentle-wave" x="48" y="2" class="wave wave-3" />
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+        
+        </div>
+          
+        <!-- Time-based greeting bar -->
+        <div class="greeting-bar">
+            <h2 class="greeting-text" id="time-greeting">How are you feeling this morning?</h2>
+            <div class="selected-emotions"></div>
+            <!-- Emotion Carousel -->
+            <div class="emotion-carousel-container">
+                <button class="carousel-arrow prev-arrow">❮</button>
+                <div class="emotion-carousel"></div>
+                <button class="carousel-arrow next-arrow">❯</button>
+            </div>
+            
+            <!-- Carousel indicators -->
+            <div class="carousel-indicators"></div>
+        </div>
+        
+        <!-- Audio for sound effects -->
+        <audio id="selection-sound" src="innerweather/visuals/sound-effects/selection.mp3" preload="auto"></audio>
+        <audio id="fill-sound" src="innerweather/visuals/sound-effects/fill.mp3" preload="auto"></audio>
+      </div>
+    
+      <svg>
+        <clipPath id="myPath" clipPathUnits="objectBoundingBox">
+          <path d="M0.373,0.967 S0.616,0.866,0.768,0.644 S0.912,0.107,0.739,0 S0.373,0.108,0.373,0.108 S0.166,-0.113,0,-0.002 S-0.159,0.432,-0.021,0.644 S0.373,0.967,0.373,0.967"></path>
+        </clipPath>
+      </svg>
+
+      <button class="toggle-button" id="togglePlayer"><i class="fas fa-music"></i></button>
+
+      <div class="music-wrapper" id="musicWrapper">
+        <div class="music-player">
+          <div id="vinyl" class="vinyl"></div>
+    
+          <div class="controls">
+            <button id="prev-button"><i class="fas fa-backward"></i></button>
+            <button id="play-pause-button"><i class="fas fa-play"></i></button>
+            <button id="next-button"><i class="fas fa-forward"></i></button>
+          </div>
+    
+          <div class="volume-controls">
+            <button id="volume-down"><i class="fas fa-volume-down"></i></button>
+            <button id="volume-up"><i class="fas fa-volume-up"></i></button>
+          </div>
+    
+          <div class="progress-container">
+            <div id="progress" class="progress"></div>
+          </div>
+    
+          <div class="time-display">00:00 / 00:00</div>
+          <div id="track-info" class="track-info">Loading...</div>
+          <div id="player" style="display:none;"></div>
+        </div>
+      </div>
+  <script src="innerweather/js/main.js"></script>
+  <script src="innerweather/js/player.js"></script>
+</body>
+</html>
