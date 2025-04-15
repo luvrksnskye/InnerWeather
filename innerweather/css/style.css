@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'KTEGAKI';
-    src: url('/innerweather/visuals/KTEGAKI.ttf') format('truetype');
+    src: url('../visuals/KTEGAKI.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -22,7 +22,7 @@ body, html {
 }
 
 body {
-    background-image: url('/innerweather/visuals/bg.png');
+    background-image: url('../visuals/bg.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
