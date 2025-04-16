@@ -1,119 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const playlist = [
-        "../music/music-background.mp3"
-
-    ];
-
-    let currentTrackIndex = 0;
-    let isMuted = false;
+    const music = document.getElementById('bgMusic');
+    const toggleBtn = document.getElementById('musicToggle');
     let isPlaying = false;
-    let audioContext = null;
-    let audioElement = null;
-    let audioSource = null;
-    let gainNode = null;
 
-    const toggleButton = document.getElementById('togglePlayer');
-
-    function initAudio() {
-        if (audioContext) return;
-
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        audioElement = new Audio();
-        audioElement.crossOrigin = "anonymous";
-        audioElement.loop = false;
-
-        audioSource = audioContext.createMediaElementSource(audioElement);
-        gainNode = audioContext.createGain();
-
-        audioSource.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        audioElement.addEventListener('ended', playNextTrack);
-
-        if (audioContext.state === 'suspended') {
-            audioContext.resume().then(() => {
-                console.log('AudioContext resumed');
-            });
-        }
-
-        loadTrack(currentTrackIndex);
-    }
-
-    function loadTrack(index) {
-        audioElement.src = playlist[index];
-        audioElement.load();
-    }
-
-    function playAudio() {
-
-        const playPromise = audioElement.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                isPlaying = true;
-                toggleButton.classList.add('playing');
-            })
-            .catch(error => {
-                console.error("Playback failed:", error);
-
-                toggleButton.classList.add('requires-interaction');
-                toggleButton.title = "Tap to play audio";
-            });
-        }
-    }
-
-    function playNextTrack() {
-        currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-        loadTrack(currentTrackIndex);
-        playAudio();
-    }
-
-    function togglePlayback() {
-        if (!audioContext) {
-            initAudio();
-        }
-
-        if (isPlaying) {
-            audioElement.pause();
-            isPlaying = false;
-            toggleButton.classList.remove('playing');
-        } else {
-            playAudio();
-        }
-    }
-
-    function toggleMute() {
-        if (!audioContext) {
-            initAudio();
-            return;
-        }
-
-        isMuted = !isMuted;
-        gainNode.gain.value = isMuted ? 0 : 1;
-
-        if (isMuted) {
-            toggleButton.classList.add('muted');
-            toggleButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        } else {
-            toggleButton.classList.remove('muted');
-            toggleButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-    }
-
-    toggleButton.addEventListener('click', function() {
+    function toggleMusic() {
         if (!isPlaying) {
-            togglePlayback();
+            music.play()
+                .then(() => {
+                    isPlaying = true;
+                    toggleBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                })
+                .catch(error => {
+                    console.error("Playback failed:", error);
+                });
         } else {
-            toggleMute();
+            music.muted = !music.muted;
+            toggleBtn.classList.toggle('muted', music.muted);
+            toggleBtn.innerHTML = music.muted 
+                ? '<i class="fas fa-volume-mute"></i>' 
+                : '<i class="fas fa-volume-up"></i>';
         }
-    });
+    }
 
-    toggleButton.addEventListener('touchstart', function(e) {
-        e.preventDefault(); 
-        if (!isPlaying) {
-            togglePlayback();
-        } else {
-            toggleMute();
-        }
-    }, { passive: false });
+    function handleInteraction(e) {
+        e.preventDefault();
+        toggleMusic();
+        
+        // Add pulse animation
+        toggleBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            toggleBtn.style.transform = 'scale(1)';
+        }, 100);
+    }
+
+    toggleBtn.addEventListener('click', handleInteraction);
+    toggleBtn.addEventListener('touchstart', handleInteraction, { passive: false });
 });

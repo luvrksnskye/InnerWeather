@@ -93,7 +93,14 @@
         </clipPath>
       </svg>
 
-      <button class="toggle-button" id="togglePlayer"><i class="fas fa-music"></i></button>
+      <audio id="bgMusic" loop>
+        <source src="music/music-background.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="musicToggle" aria-label="Music control">
+        <i class="fas fa-music"></i>
+    </button>
+
 
   <script src="innerweather/js/main.js"></script>
   <script src="innerweather/js/player.js"></script>
