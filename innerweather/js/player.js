@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
     const playlist = [
         "../music/music-background.mp3"
 
@@ -16,12 +15,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('togglePlayer');
 
     function initAudio() {
-        if (audioContext) return; 
+        if (audioContext) return;
 
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         audioElement = new Audio();
         audioElement.crossOrigin = "anonymous";
-        audioElement.loop = false; 
+        audioElement.loop = false;
 
         audioSource = audioContext.createMediaElementSource(audioElement);
         gainNode = audioContext.createGain();
@@ -31,8 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         audioElement.addEventListener('ended', playNextTrack);
 
+        if (audioContext.state === 'suspended') {
+            audioContext.resume().then(() => {
+                console.log('AudioContext resumed');
+            });
+        }
+
         loadTrack(currentTrackIndex);
-        playAudio();
     }
 
     function loadTrack(index) {
@@ -41,14 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function playAudio() {
-        audioElement.play()
-            .then(() => {
+
+        const playPromise = audioElement.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
                 isPlaying = true;
                 toggleButton.classList.add('playing');
             })
             .catch(error => {
                 console.error("Playback failed:", error);
+
+                toggleButton.classList.add('requires-interaction');
+                toggleButton.title = "Tap to play audio";
             });
+        }
     }
 
     function playNextTrack() {
@@ -57,9 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
         playAudio();
     }
 
+    function togglePlayback() {
+        if (!audioContext) {
+            initAudio();
+        }
+
+        if (isPlaying) {
+            audioElement.pause();
+            isPlaying = false;
+            toggleButton.classList.remove('playing');
+        } else {
+            playAudio();
+        }
+    }
+
     function toggleMute() {
         if (!audioContext) {
-            initAudio(); 
+            initAudio();
             return;
         }
 
@@ -75,5 +100,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    toggleButton.addEventListener('click', toggleMute);
+    toggleButton.addEventListener('click', function() {
+        if (!isPlaying) {
+            togglePlayback();
+        } else {
+            toggleMute();
+        }
+    });
+
+    toggleButton.addEventListener('touchstart', function(e) {
+        e.preventDefault(); 
+        if (!isPlaying) {
+            togglePlayback();
+        } else {
+            toggleMute();
+        }
+    }, { passive: false });
 });
