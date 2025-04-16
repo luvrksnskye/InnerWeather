@@ -3,7 +3,7 @@
    ========================================= */
    @font-face {
     font-family: 'KTEGAKI';
-    src: url('../visuals/KTEGAKI.ttf') format('truetype');
+    src: url('assets/KTEGAKI.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Improves font loading performance */
@@ -32,7 +32,7 @@ body, html {
 }
 
 body {
-    background-image: url('../visuals/bg.png');
+    background-image: url('assets/bg.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
