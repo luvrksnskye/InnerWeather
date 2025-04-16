@@ -1443,3 +1443,168 @@ body {
         scroll-behavior: auto !important;
     }
 }
+
+/* =======================================
+   MOBILE RESPONSIVE ADJUSTMENTS FOR CLOUDS
+   ======================================= */
+
+   @media screen and (max-width: 768px) {
+
+    .small-cloud-container, .big-cloud-container {
+        display: block;
+    }
+    .small-cloud-img {
+        width: 500%;
+    }
+
+    .big-cloud-img {
+        width: 1000%; 
+    }
+
+    @-webkit-keyframes floatSlowlyLeft {
+        from { transform: translateX(-50px) scale(1.2); }
+        to { transform: translateX(calc(100vw + 100px)) scale(1.2); }
+    }
+
+    @keyframes floatSlowlyLeft {
+        from { transform: translateX(-50px) scale(1.2); }
+        to { transform: translateX(calc(100vw + 100px)) scale(1.2); }
+    }
+
+    @-webkit-keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 50px)) translateY(-50%) scale(1.8); } 
+        to { transform: translateX(-150px) translateY(-50%) scale(1.8); } 
+    }
+
+    @keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 50px)) translateY(-50%) scale(1.8); } 
+        to { transform: translateX(-150px) translateY(-50%) scale(1.8); } 
+    }
+
+    .small-cloud-container {
+        top: 5%;
+        right: 5%;
+    }
+
+    .big-cloud-container {
+        bottom: 10%;
+        left: 5%;
+    }
+
+    .cloud-left {
+        -webkit-animation-duration: 35s;
+        animation-duration: 35s;
+    }
+
+    .cloud-right {
+        -webkit-animation-duration: 28s;
+        animation-duration: 28s;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    @-webkit-keyframes floatSlowlyLeft {
+        from { transform: translateX(-80px) scale(1.5); }
+        to { transform: translateX(calc(100vw + 80px)) scale(1.5); }
+    }
+
+    @keyframes floatSlowlyLeft {
+        from { transform: translateX(-80px) scale(1.5); }
+        to { transform: translateX(calc(100vw + 80px)) scale(1.5); }
+    }
+
+    @-webkit-keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 30px)) translateY(-40%) scale(2.2); } 
+        to { transform: translateX(-120px) translateY(-40%) scale(2.2); } 
+    }
+
+    @keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 30px)) translateY(-40%) scale(2.2); } 
+        to { transform: translateX(-120px) translateY(-40%) scale(2.2); } 
+    }
+
+    .small-cloud-container {
+        top: 8%;
+        right: 3%;
+    }
+
+    .big-cloud-container {
+        bottom: 15%;
+        left: 2%;
+    }
+
+    .cloud-left {
+        -webkit-animation-duration: 30s;
+        animation-duration: 30s;
+    }
+
+    .cloud-right {
+        -webkit-animation-duration: 25s;
+        animation-duration: 25s;
+    }
+
+    .small-cloud-img {
+        width: 500%;
+    }
+
+    .big-cloud-img {
+        width: 1200% !important; 
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    @-webkit-keyframes floatSlowlyLeft {
+        from { transform: translateX(-60px) scale(1.8); }
+        to { transform: translateX(calc(100vw + 60px)) scale(1.8); }
+    }
+
+    @keyframes floatSlowlyLeft {
+        from { transform: translateX(-60px) scale(1.8); }
+        to { transform: translateX(calc(100vw + 60px)) scale(1.8); }
+    }
+
+    @-webkit-keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 20px)) translateY(-30%) scale(2.5); } 
+        to { transform: translateX(-100px) translateY(-30%) scale(2.5); } 
+    }
+
+    @keyframes floatSlowlyRight {
+        from { transform: translateX(calc(100vw - 20px)) translateY(-30%) scale(2.5); } 
+        to { transform: translateX(-100px) translateY(-30%) scale(2.5); } 
+    }
+
+    .small-cloud-container {
+        top: 10%;
+        right: 0;
+    }
+
+    .big-cloud-container {
+        bottom: 12%;
+        left: 0;
+    }
+
+    .cloud-left {
+        -webkit-animation-duration: 28s;
+        animation-duration: 28s;
+    }
+
+    .cloud-right {
+        -webkit-animation-duration: 23s;
+        animation-duration: 23s;
+    }
+    .small-cloud-img {
+        width: 500%;
+    }
+
+    .big-cloud-img {
+        width: 1400% !important; 
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .cloud-left, .cloud-right {
+        animation-duration: 60s; 
+    }
+}
