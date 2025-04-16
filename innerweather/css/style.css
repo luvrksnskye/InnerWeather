@@ -1,4 +1,7 @@
-@font-face {
+/* =========================================
+   1. GLOBAL STYLES
+   ========================================= */
+   @font-face {
     font-family: 'KTEGAKI';
     src: url('../visuals/KTEGAKI.ttf') format('truetype');
     font-weight: normal;
@@ -43,42 +46,48 @@ p {
     letter-spacing: 0.3px;
 }
 
+/* =========================================
+   2. SCROLLBAR STYLES
+   ========================================= */
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-  }
+}
 
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: #f0f8ff; 
     border-radius: 10px;
-  }
+}
 
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #add8e6, #ffb6c1); 
     border-radius: 10px;
     border: 3px solid #f0f8ff;
-  }
+}
 
-  ::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, #87ceeb, #ffc0cb);
-  }
+}
 
-  * {
+* {
     scrollbar-width: thin;
     scrollbar-color: #add8e6 #f0f8ff;
-  }
+}
 
-  body {
+body {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
+}
 
-  .ms-scrollbar {
+.ms-scrollbar {
     scrollbar-face-color: #add8e6; 
     scrollbar-track-color: #f0f8ff;
     scrollbar-arrow-color: #ffb6c1;
     scrollbar-shadow-color: #87ceeb;
-  }
+}
 
+/* =========================================
+   3. LAYOUT & CONTAINER STYLES
+   ========================================= */
 .container {
     display: flex;
     flex-direction: column;
@@ -86,7 +95,7 @@ p {
     justify-content: flex-start;
     min-height: 100vh;
     position: relative;
-    padding: 2rem;
+    padding: 2rem 1rem;
     overflow: visible; 
 }
 
@@ -99,6 +108,23 @@ p {
     margin-top: 2rem;
 }
 
+.content {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 0 20px rgba(70, 130, 180, 0.4);
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards 0.8s;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+/* =========================================
+   4. HEADER & TITLE ELEMENTS
+   ========================================= */
 .title-img {
     width: 60%;
     max-width: 400px;
@@ -139,6 +165,9 @@ p {
     height: auto;
 }
 
+/* =========================================
+   5. BACKGROUND CLOUD ELEMENTS
+   ========================================= */
 .small-cloud-container {
     position: absolute;
     top: 50%;
@@ -165,12 +194,15 @@ p {
     width: 300%;
 }
 
+/* =========================================
+   6. MESSAGE & GREETING COMPONENTS
+   ========================================= */
 .typing-message-container {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(3px);
     border-radius: 20px;
-    padding: 1rem 2rem;
-    width: 80%;
+    padding: 1rem 1.5rem;
+    width: 90%;
     max-width: 700px;
     box-shadow: 0 0 15px rgba(216, 191, 216, 0.5);
     margin-top: 1rem;
@@ -181,7 +213,7 @@ p {
 
 .typing-text {
     color: var(--dark-blue);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -200,7 +232,7 @@ p {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(5px);
     border-radius: 20px;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     width: 90%;
     max-width: 700px;
     box-shadow: 0 0 15px rgba(216, 191, 216, 0.5);
@@ -214,147 +246,15 @@ p {
 
 .greeting-text {
     color: var(--dark-blue);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin: 0;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
 
-.content {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
-    border-radius: 15px;
-    padding: 2rem;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 0 20px rgba(70, 130, 180, 0.4);
-    margin-top: 2rem;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-out forwards 0.8s;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-}
-
-.emotion-carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: 2rem 0;
-    width: 100%;
-}
-
-.emotion-carousel {
-    display: flex;
-    width: 85%;
-    overflow: hidden;
-    position: relative;
-    min-height: 120px;
-    border-radius: 1.2rem;
-    background: linear-gradient(145deg, #ffe6f0, #e6f0ff);
-    padding: 1rem;
-    box-shadow: 0 4px 20px rgba(255, 182, 193, 0.2);
-}
-
-.emotion-slide {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 1rem;
-    width: 100%;
-    min-height: 100px;
-    padding: 0.5rem 0;
-    transition: opacity 0.4s ease;
-    flex-shrink: 0;
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    -webkit-overflow-scrolling: touch;
-}
-
-.emotion-slide.active {
-    opacity: 1;
-    position: relative;
-    z-index: 1;
-}
-
-.emotion-btn {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-    background-color: #fff6fb;
-    border: 2px dashed #ffc0cb;
-    border-radius: 30px;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Comic Neue', cursive;
-    color: #d17fa0;
-    box-shadow: 0 4px 10px rgba(255, 182, 193, 0.2);
-    min-width: max-content;
-}
-
-.emotion-btn:hover {
-    transform: translateY(-6px) rotate(-1deg);
-    background-color: #ffeaf4;
-    box-shadow: 0 8px 16px rgba(255, 182, 193, 0.4);
-}
-
-.emotion-slide::-webkit-scrollbar {
-    height: 6px;
-}
-.emotion-slide::-webkit-scrollbar-thumb {
-    background-color: #ffc0cb;
-    border-radius: 4px;
-}
-.emotion-slide::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.carousel-arrow {
-    background: linear-gradient(to bottom right, #fff0f6, #fceaff);
-    border: none;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 1.4rem;
-    color: #a47ac3;
-    margin: 0 10px;
-    box-shadow: 0 0 10px rgba(255, 192, 203, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.carousel-arrow:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 16px rgba(255, 192, 203, 0.8);
-}
-
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 1rem;
-}
-
-.indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #ffeef8;
-    box-shadow: 0 0 4px #ffc0cb;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.indicator.active {
-    background-color: #ff85a2;
-    transform: scale(1.4);
-}
-
+/* =========================================
+   7. EMOTION CAROUSEL
+   ========================================= */
 .emotion-carousel-container {
     display: flex;
     align-items: center;
@@ -407,28 +307,6 @@ p {
     animation: slideExit 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
-@keyframes slideAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes slideExit {
-    from {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-}
-
 .carousel-arrow {
     background-color: rgba(255, 255, 255, 0.8);
     border: none;
@@ -467,21 +345,6 @@ p {
     background: rgba(216, 191, 216, 0.2);
     z-index: -1;
     animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 0.7;
-    }
-    50% {
-        transform: scale(1.3);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 0;
-    }
 }
 
 .carousel-indicators {
@@ -524,6 +387,9 @@ p {
     box-shadow: 0 3px 8px rgba(216, 191, 216, 0.7);
 }
 
+/* =========================================
+   8. EMOTION BUTTONS & SELECTION
+   ========================================= */
 .emotion-btn {
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid rgba(216, 191, 216, 0.5);
@@ -571,12 +437,6 @@ p {
     animation: wiggle 0.5s ease;
 }
 
-@keyframes wiggle {
-    0%, 100% { transform: translateY(-7px) scale(1.08) rotate(0deg); }
-    25% { transform: translateY(-7px) scale(1.08) rotate(-3deg); }
-    75% { transform: translateY(-7px) scale(1.08) rotate(3deg); }
-}
-
 .selected-emotions {
     display: flex;
     justify-content: center;
@@ -598,22 +458,6 @@ p {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(216, 191, 216, 0.5);
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes popIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-.selected-emotion-pill:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(216, 191, 216, 0.5);
 }
 
 .remove-emotion {
@@ -639,217 +483,9 @@ p {
     transform: rotate(90deg);
 }
 
-.star-particle {
-    position: absolute;
-    background-color: white;
-    width: 10px;
-    height: 10px;
-    z-index: 100;
-    pointer-events: none;
-}
-
-.star-particle::before, .star-particle::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-}
-
-.star-particle::before {
-    transform: rotate(45deg);
-}
-.music-wrapper {
-    position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    width: 250px;
-    height: auto;
-    background: linear-gradient(to bottom right, #fce4ec, #e0f7fa);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    border-radius: 1rem;
-    z-index: 999;
-    transition: transform 0.4s ease;
-  }
-
-  .music-wrapper.hidden {
-    transform: translateX(-120%);
-  }
-
-  .music-player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .toggle-button {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    background: #f48fb1;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-    cursor: pointer;
-  }
-
-  .vinyl {
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #f8bbd0 40%, #81d4fa 100%);
-    border-radius: 50%;
-    animation: spin 0s linear infinite;
-    margin-bottom: 0.8rem;
-    cursor: pointer;
-  }
-
-  .vinyl.spinning {
-    animation: spin 4s linear infinite;
-  }
-
-  @keyframes spin {
-    100% { transform: rotate(360deg); }
-  }
-
-  .controls, .volume-controls {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 0.3rem 0;
-  }
-
-  .controls button, .volume-controls button {
-    border: none;
-    padding: 0.4rem;
-    border-radius: 50%;
-    font-size: 1rem;
-    color: #f48fb1;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .controls button:hover, .volume-controls button:hover {
-    color: #ffc7e4;
-  }
-
-  .progress-container {
-    background: #ccc;
-    height: 6px;
-    border-radius: 4px;
-    overflow: hidden;
-    width: 90%;
-    cursor: pointer;
-    margin: 0.5rem 0;
-  }
-
-  .progress {
-    background: #f48fb1;
-    height: 100%;
-    width: 0%;
-  }
-
-  .time-display {
-    font-size: 0.75rem;
-    color: #555;
-    margin-bottom: 0.3rem;
-  }
-
-  .track-info {
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #2c0079;
-    text-align: center;
-    padding: 0 0.5rem;
-  }
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) translateX(-50%); }
-    50% { transform: translateY(-15px) translateX(-50%); }
-}
-
-@keyframes sway {
-    0%, 100% { transform: rotate(-2deg); }
-    50% { transform: rotate(2deg); }
-}
-
-@keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 10px var(--pastel-pink)); }
-    50% { filter: drop-shadow(0 0 20px var(--pastel-purple)); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes floatSlowlyLeft {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(100vw + 200px)); }
-}
-
-@keyframes floatSlowlyRight {
-    from { transform: translateX(0) translateY(-50%); }
-    to { transform: translateX(-100px) translateY(-50%); }
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-@keyframes pulse {
-    0% { opacity: 0.7; transform: scale(0.5); }
-    100% { opacity: 0; transform: scale(1.5); }
-}
-
-@keyframes wave {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-@keyframes rise {
-    0% { transform: translateY(0); opacity: 0.8; }
-    100% { transform: translateY(-100px); opacity: 0; }
-}
-
-@keyframes starFly {
-    0% { 
-        transform: translate(0, 0) rotate(0deg) scale(1);
-        opacity: 1;
-    }
-    100% { 
-        transform: translate(var(--end-x), var(--end-y)) rotate(var(--rotation)) scale(0);
-        opacity: 0;
-    }
-}
-
-
+/* =========================================
+   9. HEART CONTAINER & EFFECTS
+   ========================================= */
 :root {
     --dim-x: 80px;
     --dim-y: 70px;
@@ -955,6 +591,283 @@ p {
     animation-delay: -1s;
 }
 
+.bubble {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    animation: bubblerise 4s ease-in infinite;
+    z-index: 10;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.color-blend-transition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.heart-sparkle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1%, transparent 15%);
+    background-size: 20px 20px;
+    animation: sparkle 2s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================================
+   10. STAR PARTICLES
+   ========================================= */
+.star-particle {
+    position: absolute;
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.star-particle::before, .star-particle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+
+.star-particle::before {
+    transform: rotate(45deg);
+}
+
+/* =========================================
+   11. MUSIC PLAYER
+   ========================================= */
+.music-wrapper {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 250px;
+    height: auto;
+    background: linear-gradient(to bottom right, #fce4ec, #e0f7fa);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 1rem;
+    z-index: 999;
+    transition: transform 0.4s ease;
+}
+
+.music-wrapper.hidden {
+    transform: translateX(-120%);
+}
+
+.music-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toggle-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: #f48fb1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.vinyl {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, #f8bbd0 40%, #81d4fa 100%);
+    border-radius: 50%;
+    animation: spin 0s linear infinite;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.vinyl.spinning {
+    animation: spin 4s linear infinite;
+}
+
+.controls, .volume-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.3rem 0;
+}
+
+.controls button, .volume-controls button {
+    border: none;
+    padding: 0.4rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: #f48fb1;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.controls button:hover, .volume-controls button:hover {
+    color: #ffc7e4;
+}
+
+.progress-container {
+    background: #ccc;
+    height: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 90%;
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+
+.progress {
+    background: #f48fb1;
+    height: 100%;
+    width: 0%;
+}
+
+.time-display {
+    font-size: 0.75rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.track-info {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #2c0079;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+/* =========================================
+   12. ANIMATIONS
+   ========================================= */
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(-15px) translateX(-50%); }
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 10px var(--pastel-pink)); }
+    50% { filter: drop-shadow(0 0 20px var(--pastel-purple)); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatSlowlyLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 200px)); }
+}
+
+@keyframes floatSlowlyRight {
+    from { transform: translateX(0) translateY(-50%); }
+    to { transform: translateX(-100px) translateY(-50%); }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}
+
+@keyframes starFly {
+    0% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(var(--end-x), var(--end-y)) rotate(var(--rotation)) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes slideAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideExit {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+}
+
 @keyframes move {
     0% {
         transform: translateX(-90px);
@@ -971,24 +884,6 @@ p {
     100% {
         background-position: 200% 0;
     }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
-
-.bubble {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    width: 8px;
-    height: 8px;
-    animation: bubblerise 4s ease-in infinite;
-    z-index: 10;
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
-    pointer-events: none;
 }
 
 @keyframes bubblerise {
@@ -1017,18 +912,6 @@ p {
     }
 }
 
-.color-blend-transition {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, transparent 70%);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 15;
-}
-
 @keyframes blendshine {
     0% {
         opacity: 0.7;
@@ -1043,18 +926,137 @@ p {
     }
 }
 
-.heart-sparkle {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1%, transparent 15%);
-    background-size: 20px 20px;
-    animation: sparkle 2s linear infinite;
-    opacity: 0;
-    pointer-events: none;
-}
-
 @keyframes sparkle {
     0%, 100% { opacity: 0; }
     50% { opacity: 0.5; }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: translateY(-7px) scale(1.08) rotate(0deg); }
+    25% { transform: translateY(-7px) scale(1.08) rotate(-3deg); }
+    75% { transform: translateY(-7px) scale(1.08) rotate(3deg); }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* =========================================
+   13. RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+    
+    .container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .title-img {
+        width: 80%;
+    }
+    
+    .typing-message-container {
+        padding: 0.8rem 1rem;
+        width: 90%;
+    }
+    
+    .typing-text {
+        font-size: 1.2rem;
+    }
+    
+    .greeting-text {
+        font-size: 1.4rem;
+    }
+    
+    .emotion-carousel {
+        width: 100%;
+    }
+    
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+        margin: 0 5px;
+    }
+    
+    .emotion-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .music-wrapper {
+        width: 200px;
+    }
+    
+    .small-cloud-container, .big-cloud-container {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .content {
+        padding: 1rem;
+    }
+    
+    .typing-text {
+        font-size: 1rem;
+        white-space: normal;
+    }
+    
+    .greeting-text {
+        font-size: 1.2rem;
+    }
+    
+    .emotion-carousel-container {
+        padding: 10px 5px;
+    }
+    
+    .emotion-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .music-wrapper {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        width: 180px;
+    }
+    
+    .toggle-button {
+        top: 0.5rem;
+        left: 0.5rem;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .vinyl {
+        width: 50px;
+        height: 50px;
+    }
+    
+    :root {
+        --dim-x: 60px;
+        --dim-y: 50px;
+    }
 }
