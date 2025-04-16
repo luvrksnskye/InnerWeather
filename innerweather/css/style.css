@@ -349,7 +349,6 @@ body {
     margin: 0 12px;
     -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 5px 15px rgba(216, 191, 216, 0.6);
     z-index: 10;
     position: relative;
     -webkit-appearance: none; /* Fixes iOS button styling */
@@ -385,8 +384,8 @@ body {
 }
 
 .indicator {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 5px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
@@ -504,7 +503,6 @@ body {
     height: 18px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
-    color: #888;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -513,7 +511,6 @@ body {
     line-height: 1;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    border: 1px solid rgba(216, 191, 216, 0.3);
 }
 
 .remove-emotion:hover {
@@ -707,26 +704,8 @@ body {
 /* =========================================
    11. MUSIC PLAYER
    ========================================= */
-.music-wrapper {
-    position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    width: 250px;
-    height: auto;
-    background: linear-gradient(to bottom right, #fce4ec, #e0f7fa);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    border-radius: 1rem;
-    z-index: 999;
-    -webkit-transition: transform 0.4s ease;
-    transition: transform 0.4s ease;
-}
 
-.music-wrapper.hidden {
-    transform: translateX(-120%);
-}
-
-.toggle-button {
+   .toggle-button {
     position: fixed;
     top: 1rem;
     left: 1rem;
@@ -746,6 +725,19 @@ body {
     cursor: pointer;
     -webkit-appearance: none; /* Fixes iOS button styling */
 }
+
+.toggle-button:hover {
+    background: #f06292;
+}
+
+.toggle-button:active {
+    transform: scale(0.95);
+}
+
+.toggle-button.muted {
+    background: #9e9e9e;
+}
+
 /* =========================================
    12. ANIMATIONS
    ========================================= */
@@ -1116,157 +1108,338 @@ body {
 /* =========================================
    13. RESPONSIVE ADJUSTMENTS
    ========================================= */
-@media screen and (max-width: 768px) {
-    h2 {
-        font-size: 1.6rem;
+   @media screen and (max-width: 1024px) {
+    html {
+        font-size: 95%; 
     }
-    
-    p {
-        font-size: 1rem;
-    }
-    
+
     .container {
-        padding: 1rem 0.5rem;
+        max-width: 95%;
+        margin: 0 auto;
     }
-    
-    .title-img {
-        width: 80%;
-    }
-    
-    .typing-message-container {
-        padding: 0.8rem 1rem;
-        width: 90%;
-    }
-    
-    .typing-text {
-        font-size: 1.2rem;
-    }
-    
-    .greeting-text {
-        font-size: 1.4rem;
-    }
-    
-    .emotion-carousel {
-        width: 100%;
-    }
-    
-    .carousel-arrow {
-        width: 35px;
-        height: 35px;
-        margin: 0 5px;
-    }
-    
-    .emotion-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-    }
-    
-    .music-wrapper {
-        width: 200px;
-    }
-    
-    .small-cloud-container, .big-cloud-container {
-        display: none;
+
+    .section-padding {
+        padding: 2rem 1rem;
     }
 }
 
-/* Safari-specific fixes */
-@supports (-webkit-touch-callout: none) {
-    /* Fix for 100vh issue on iOS Safari */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
+
+    body {
+        line-height: 1.4;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p, li, label, input, select, textarea {
+        font-size: 0.95rem;
+    }
+
     .container {
+        padding: 0.8rem 0.5rem;
+    }
+
+    .title-img {
+        width: 70%;
+        max-height: 100px;
+    }
+
+    .typing-message-container {
+        padding: 0.7rem 0.9rem;
+        width: 85%;
+    }
+
+    .typing-text {
+        font-size: 1.1rem;
+    }
+
+    .greeting-text {
+        font-size: 1.3rem;
+    }
+
+    .emotion-carousel {
+        width: 95%;
+    }
+
+    .carousel-arrow {
+        width: 32px;
+        height: 32px;
+        margin: 0 4px;
+    }
+
+    .emotion-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        margin: 0.3rem;
+    }
+
+    .small-cloud-container, .big-cloud-container {
+        display: none;
+    }
+
+    button, 
+    a, 
+    input, 
+    select, 
+    .interactive-element {
+        min-height: 40px;
+        min-width: 40px;
+    }
+
+    .section {
+        margin-bottom: 1.2rem;
+    }
+
+    input, select, textarea {
+        font-size: 16px; 
+        padding: 0.4rem;
+    }
+
+    .card, .box, .panel {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .mt-4 {
+        margin-top: 0.5rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 0.5rem;
+    }
+
+    .p-4 {
+        padding: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        font-size: 85%;
+    }
+
+    body {
+        line-height: 1.3;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    p, li, label, input, select, textarea {
+        font-size: 0.9rem;
+    }
+
+    .content {
+        padding: 0.8rem;
+    }
+
+    .typing-text {
+        font-size: 0.9rem;
+        white-space: normal;
+    }
+
+    .greeting-text {
+        font-size: 1.1rem;
+    }
+
+    .emotion-carousel-container {
+        padding: 8px 4px;
+    }
+
+    .emotion-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        margin: 0.2rem;
+    }
+
+    .carousel-arrow {
+        width: 28px;
+        height: 28px;
+        margin: 0 3px;
+    }
+
+    .toggle-button {
+        top: 0.4rem;
+        left: 0.4rem;
+        width: 30px;
+        height: 30px;
+    }
+
+    .flex-container {
+        flex-direction: column;
+    }
+
+    .flex-row {
+        flex-direction: column;
+    }
+
+    .icon {
+        transform: scale(0.75);
+    }
+
+    .secondary-nav {
+        display: none;
+    }
+
+    .emotion-btn, 
+    .carousel-arrow,
+    .remove-emotion {
+        min-height: 36px; 
+    }
+
+    :root {
+        --dim-x: min(50px, 12vw);
+        --dim-y: min(40px, 10vw);
+        --cruve-height: min(12px, 3vw);
+    }
+
+    .card, .box, .panel {
+        padding: 0.6rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .container {
+        padding: 0.6rem 0.3rem;
+    }
+
+    .mt-4, .mt-3 {
+        margin-top: 0.4rem;
+    }
+
+    .mb-4, .mb-3 {
+        margin-bottom: 0.4rem;
+    }
+
+    .p-4, .p-3 {
+        padding: 0.4rem;
+    }
+
+    img, .image {
+        max-width: 90%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    html {
+        font-size: 80%;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    p, li, label, input, select, textarea {
+        font-size: 0.85rem;
+    }
+
+    .emotion-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+        margin: 0.15rem;
+    }
+
+    .carousel-arrow {
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon {
+        transform: scale(0.7);
+    }
+
+    .section {
+        margin-bottom: 0.8rem;
+    }
+
+    .card, .box, .panel {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .mt-4, .mt-3, .mt-2 {
+        margin-top: 0.3rem;
+    }
+
+    .mb-4, .mb-3, .mb-2 {
+        margin-bottom: 0.3rem;
+    }
+
+    .p-4, .p-3, .p-2 {
+        padding: 0.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) and (min-height: 800px) {
+    .container {
+        padding-top: env(safe-area-inset-top, 1.5rem);
+        padding-bottom: env(safe-area-inset-bottom, 1.5rem);
+        padding-left: env(safe-area-inset-left, 0.8rem);
+        padding-right: env(safe-area-inset-right, 0.8rem);
+    }
+
+    .toggle-button {
+        top: max(0.4rem, env(safe-area-inset-top, 0.4rem));
+        left: max(0.4rem, env(safe-area-inset-left, 0.4rem));
+    }
+}
+
+@supports (-webkit-touch-callout: none) {
+
+    .container, .full-height {
         height: -webkit-fill-available;
     }
-    
-    /* Improves touch events on iOS */
+
     .carousel-arrow,
     .emotion-btn,
-    .toggle-button {
+    .toggle-button,
+    button,
+    a,
+    .interactive-element {
         cursor: pointer;
         touch-action: manipulation;
     }
 }
 
-@media screen and (max-width: 480px) {
-    h2 {
-        font-size: 1.4rem;
-    }
-    
-    .content {
-        padding: 1rem;
-    }
-    
-    .typing-text {
-        font-size: 1rem;
-        white-space: normal;
-    }
-    
-    .greeting-text {
-        font-size: 1.2rem;
-    }
-    
-    .emotion-carousel-container {
-        padding: 10px 5px;
-    }
-    
-    .emotion-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .carousel-arrow {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .music-wrapper {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        width: 180px;
-    }
-    
-    .toggle-button {
-        top: 0.5rem;
-        left: 0.5rem;
-        width: 35px;
-        height: 35px;
-    }
-    
-    .vinyl {
-        width: 50px;
-        height: 50px;
-    }
-    
-    /* Make buttons easier to tap on small screens */
-    .emotion-btn, 
-    .carousel-arrow,
-    .remove-emotion {
-        min-height: 44px; /* Apple's recommended minimum touch target size */
-    }
-    
-    /* Adjust heart size for small screens using the CSS variables */
-    :root {
-        --dim-x: min(60px, 15vw);
-        --dim-y: min(50px, 12.5vw);
-        --cruve-height: min(15px, 3.75vw);
-    }
+* {
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* iPhone X and newer with notches */
-@media screen and (max-width: 480px) and (min-height: 800px) {
-    .container {
-        padding-top: env(safe-area-inset-top, 2rem);
-        padding-bottom: env(safe-area-inset-bottom, 2rem);
-        padding-left: env(safe-area-inset-left, 1rem);
-        padding-right: env(safe-area-inset-right, 1rem);
-    }
-    
-    .music-wrapper {
-        bottom: max(0.5rem, env(safe-area-inset-bottom, 0.5rem));
-        left: max(0.5rem, env(safe-area-inset-left, 0.5rem));
-    }
-    
-    .toggle-button {
-        top: max(0.5rem, env(safe-area-inset-top, 0.5rem));
-        left: max(0.5rem, env(safe-area-inset-left, 0.5rem));
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
