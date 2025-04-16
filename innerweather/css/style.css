@@ -27,6 +27,7 @@ body, html {
     height: 100%;
     font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif; /* Added system fonts for Apple devices */
     overflow-x: hidden;
+    overflow-y: hidden;
     -webkit-tap-highlight-color: transparent; /* Removes tap highlight on iOS */
     -webkit-touch-callout: none; /* Disables callout on long-press */
 }
@@ -186,32 +187,152 @@ body {
 /* =========================================
    5. BACKGROUND CLOUD ELEMENTS
    ========================================= */
-.small-cloud-container {
-    position: absolute;
-    top: 50%;
-    right: 590px;
-    transform: translateY(-50%);
-    z-index: -2;
-    -webkit-animation: floatSlowlyRight 100s linear infinite;
-    animation: floatSlowlyRight 100s linear infinite; 
-}
 
-.big-cloud-container {
-    position: absolute;
-    bottom: -10%;
-    left: -150px;
-    width: 40%; 
-    z-index: -2;
-    -webkit-animation: floatSlowlyLeft 900s linear infinite;
-    animation: floatSlowlyLeft 900s linear infinite; 
+   .small-cloud-moving {
+    position: fixed;
+    top: -5%;
+    right: -150px;
+    z-index: -1;
+    animation: floatSmallCloud 220s linear infinite;
+    width: 105%;
+    max-width: 150px;
 }
 
 .small-cloud-img {
-    width: 500%;
+    width: 700%;
+    height: auto;
+}
+
+@keyframes floatSmallCloud {
+    0% {
+        right: -150px;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+.big-cloud-moving {
+    position: fixed;
+    bottom: -10%;
+    left: -300px; /* Start off-screen */
+    z-index: -1;
+    animation: floatBigCloud 380s linear infinite;
+    width: 250%;
+    max-width: 380px;
 }
 
 .big-cloud-img {
-    width: 250%;
+    width: 400%;
+    height: auto;
+}
+
+@keyframes floatBigCloud {
+    0% {
+        left: -300px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@media (max-width: 428px) {
+   
+    .small-cloud-moving {
+        position: fixed;
+        top: -5%;
+        right: -150px;
+        z-index: -1;
+        animation: floatSmallCloud 220s linear infinite;
+        width: 705%;
+        max-width: 750px;
+    }
+    
+    .small-cloud-img {
+        width: 700%;
+        height: auto;
+    }
+    
+    .big-cloud-moving {
+        position: fixed;
+        bottom: -10%;
+        left: -300px; /* Start off-screen */
+        z-index: -1;
+        animation: floatBigCloud 380s linear infinite;
+        width: 550%;
+        max-width: 580px;
+    }
+    
+    .big-cloud-img {
+        width: 400%;
+        height: auto;
+    }
+}
+
+/* Smaller phones adjustment */
+@media (max-width: 375px) {
+    .small-cloud-moving {
+        position: fixed;
+        top: -5%;
+        right: -150px;
+        z-index: -1;
+        animation: floatSmallCloud 220s linear infinite;
+        width: 705%;
+        max-width: 750px;
+    }
+    
+    .small-cloud-img {
+        width: 700%;
+        height: auto;
+    }
+    
+    .big-cloud-moving {
+        position: fixed;
+        bottom: -10%;
+        left: -300px; /* Start off-screen */
+        z-index: -1;
+        animation: floatBigCloud 380s linear infinite;
+        width: 550%;
+        max-width: 580px;
+    }
+    
+    .big-cloud-img {
+        width: 400%;
+        height: auto;
+    }
+}
+
+/* Make clouds even more visible on short screens */
+@media (max-height: 700px) {
+    .small-cloud-moving {
+        position: fixed;
+        top: -5%;
+        right: -150px;
+        z-index: -1;
+        animation: floatSmallCloud 220s linear infinite;
+        width: 705%;
+        max-width: 750px;
+    }
+    
+    .small-cloud-img {
+        width: 700%;
+        height: auto;
+    }
+    
+    .big-cloud-moving {
+        position: fixed;
+        bottom: -10%;
+        left: -300px; /* Start off-screen */
+        z-index: -1;
+        animation: floatBigCloud 380s linear infinite;
+        width: 550%;
+        max-width: 580px;
+    }
+    
+    .big-cloud-img {
+        width: 400%;
+        height: auto;
+    }
 }
 
 /* =========================================
@@ -1444,167 +1565,3 @@ body {
     }
 }
 
-/* =======================================
-   MOBILE RESPONSIVE ADJUSTMENTS FOR CLOUDS
-   ======================================= */
-
-   @media screen and (max-width: 768px) {
-
-    .small-cloud-container, .big-cloud-container {
-        display: block;
-    }
-    .small-cloud-img {
-        width: 500%;
-    }
-
-    .big-cloud-img {
-        width: 1000%; 
-    }
-
-    @-webkit-keyframes floatSlowlyLeft {
-        from { transform: translateX(-50px) scale(1.2); }
-        to { transform: translateX(calc(100vw + 100px)) scale(1.2); }
-    }
-
-    @keyframes floatSlowlyLeft {
-        from { transform: translateX(-50px) scale(1.2); }
-        to { transform: translateX(calc(100vw + 100px)) scale(1.2); }
-    }
-
-    @-webkit-keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 50px)) translateY(-50%) scale(1.8); } 
-        to { transform: translateX(-150px) translateY(-50%) scale(1.8); } 
-    }
-
-    @keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 50px)) translateY(-50%) scale(1.8); } 
-        to { transform: translateX(-150px) translateY(-50%) scale(1.8); } 
-    }
-
-    .small-cloud-container {
-        top: 5%;
-        right: 5%;
-    }
-
-    .big-cloud-container {
-        bottom: 10%;
-        left: 5%;
-    }
-
-    .cloud-left {
-        -webkit-animation-duration: 35s;
-        animation-duration: 35s;
-    }
-
-    .cloud-right {
-        -webkit-animation-duration: 28s;
-        animation-duration: 28s;
-    }
-}
-
-@media screen and (max-width: 480px) {
-
-    @-webkit-keyframes floatSlowlyLeft {
-        from { transform: translateX(-80px) scale(1.5); }
-        to { transform: translateX(calc(100vw + 80px)) scale(1.5); }
-    }
-
-    @keyframes floatSlowlyLeft {
-        from { transform: translateX(-80px) scale(1.5); }
-        to { transform: translateX(calc(100vw + 80px)) scale(1.5); }
-    }
-
-    @-webkit-keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 30px)) translateY(-40%) scale(2.2); } 
-        to { transform: translateX(-120px) translateY(-40%) scale(2.2); } 
-    }
-
-    @keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 30px)) translateY(-40%) scale(2.2); } 
-        to { transform: translateX(-120px) translateY(-40%) scale(2.2); } 
-    }
-
-    .small-cloud-container {
-        top: 8%;
-        right: 3%;
-    }
-
-    .big-cloud-container {
-        bottom: 15%;
-        left: 2%;
-    }
-
-    .cloud-left {
-        -webkit-animation-duration: 30s;
-        animation-duration: 30s;
-    }
-
-    .cloud-right {
-        -webkit-animation-duration: 25s;
-        animation-duration: 25s;
-    }
-
-    .small-cloud-img {
-        width: 500%;
-    }
-
-    .big-cloud-img {
-        width: 1200% !important; 
-    }
-}
-
-@media screen and (max-width: 360px) {
-
-    @-webkit-keyframes floatSlowlyLeft {
-        from { transform: translateX(-60px) scale(1.8); }
-        to { transform: translateX(calc(100vw + 60px)) scale(1.8); }
-    }
-
-    @keyframes floatSlowlyLeft {
-        from { transform: translateX(-60px) scale(1.8); }
-        to { transform: translateX(calc(100vw + 60px)) scale(1.8); }
-    }
-
-    @-webkit-keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 20px)) translateY(-30%) scale(2.5); } 
-        to { transform: translateX(-100px) translateY(-30%) scale(2.5); } 
-    }
-
-    @keyframes floatSlowlyRight {
-        from { transform: translateX(calc(100vw - 20px)) translateY(-30%) scale(2.5); } 
-        to { transform: translateX(-100px) translateY(-30%) scale(2.5); } 
-    }
-
-    .small-cloud-container {
-        top: 10%;
-        right: 0;
-    }
-
-    .big-cloud-container {
-        bottom: 12%;
-        left: 0;
-    }
-
-    .cloud-left {
-        -webkit-animation-duration: 28s;
-        animation-duration: 28s;
-    }
-
-    .cloud-right {
-        -webkit-animation-duration: 23s;
-        animation-duration: 23s;
-    }
-    .small-cloud-img {
-        width: 500%;
-    }
-
-    .big-cloud-img {
-        width: 1400% !important; 
-    }
-}
-
-@media (prefers-reduced-motion) {
-    .cloud-left, .cloud-right {
-        animation-duration: 60s; 
-    }
-}
