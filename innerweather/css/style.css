@@ -35,7 +35,7 @@ body {
     background-image: url('../visuals/bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: absolute;
+    background-attachment: fixed;
 
 }
 
