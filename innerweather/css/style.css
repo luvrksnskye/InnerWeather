@@ -455,7 +455,7 @@ body {
 }
 
 .carousel-arrow {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.078);
     border: none;
     border-radius: 50%;
     width: 45px;
@@ -475,7 +475,7 @@ body {
 }
 
 .carousel-arrow:hover {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.158);
     transform: scale(1.15) rotate(5deg);
     box-shadow: 0 8px 20px rgba(216, 191, 216, 0.8);
 }
