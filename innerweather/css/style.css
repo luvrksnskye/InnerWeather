@@ -27,7 +27,6 @@ body, html {
     height: 100%;
     font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif; /* Added system fonts for Apple devices */
     overflow-x: hidden;
-    overflow-y: hidden;
     -webkit-tap-highlight-color: transparent; /* Removes tap highlight on iOS */
     -webkit-touch-callout: none; /* Disables callout on long-press */
 }
