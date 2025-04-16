@@ -35,8 +35,7 @@ body {
     background-image: url('../visuals/bg.png');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    /* Fix for iOS background-attachment: fixed issues */
+    background-attachment: absolute;
     min-height: -webkit-fill-available;
 }
 
@@ -212,7 +211,7 @@ body {
 }
 
 .big-cloud-img {
-    width: 300%;
+    width: 250%;
 }
 
 /* =========================================
