@@ -21,23 +21,16 @@
     --cruve-height: min(20px, 5vw);
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif; /* Added system fonts for Apple devices */
-    overflow-x: hidden;
-    -webkit-tap-highlight-color: transparent; /* Removes tap highlight on iOS */
-    -webkit-touch-callout: none; /* Disables callout on long-press */
-}
-
 body {
     background-image: url('assets/bg.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow-x: hidden;
+    font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif; 
+    margin: 0;
+  }
 
-}
 
 h1, h2, h3, p, button {
     font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
