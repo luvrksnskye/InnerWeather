@@ -21,6 +21,17 @@
     --cruve-height: min(20px, 5vw);
 }
 
+.bg-image {
+    position: fixed;       
+    top: 0;
+    left: 0;
+    width: 100vw;          
+    height: 100vh;         
+    object-fit: cover;     
+    z-index: -1;           
+    pointer-events: none;  
+  }
+
 body, html {
     margin: 0;
     padding: 0;
@@ -29,14 +40,6 @@ body, html {
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent; /* Removes tap highlight on iOS */
     -webkit-touch-callout: none; /* Disables callout on long-press */
-}
-
-body {
-    background-image: url('../visuals/bg.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: absolute;
-    min-height: -webkit-fill-available;
 }
 
 h1, h2, h3, p, button {
