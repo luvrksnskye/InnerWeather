@@ -6,6 +6,7 @@
     src: url('../visuals/KTEGAKI.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; /* Improves font loading performance */
 }
 
 :root {
@@ -14,14 +15,20 @@
     --pastel-blue: #add8e6;
     --pastel-purple: #d8bfd8;
     --dark-blue: #4682b4;
+    /* Use viewport units for consistent sizing across devices */
+    --dim-x: min(80px, 20vw);
+    --dim-y: min(70px, 17.5vw);
+    --cruve-height: min(20px, 5vw);
 }
 
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'KTEGAKI', 'Arial', sans-serif;
+    font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif; /* Added system fonts for Apple devices */
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent; /* Removes tap highlight on iOS */
+    -webkit-touch-callout: none; /* Disables callout on long-press */
 }
 
 body {
@@ -29,10 +36,12 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    /* Fix for iOS background-attachment: fixed issues */
+    min-height: -webkit-fill-available;
 }
 
 h1, h2, h3, p, button {
-    font-family: 'KTEGAKI', 'Arial', sans-serif;
+    font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
 }
 
 h2 {
@@ -94,6 +103,8 @@ body {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    /* Fix for iOS viewport height issues */
+    min-height: -webkit-fill-available;
     position: relative;
     padding: 2rem 1rem;
     overflow: visible; 
@@ -110,6 +121,7 @@ body {
 
 .content {
     background-color: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
     backdrop-filter: blur(5px);
     border-radius: 15px;
     padding: 1.5rem;
@@ -118,6 +130,7 @@ body {
     box-shadow: 0 0 20px rgba(70, 130, 180, 0.4);
     margin-top: 2rem;
     opacity: 0;
+    -webkit-animation: fadeIn 1.5s ease-out forwards 0.8s;
     animation: fadeIn 1.5s ease-out forwards 0.8s;
     border: 2px solid rgba(255, 255, 255, 0.8);
 }
@@ -130,7 +143,9 @@ body {
     max-width: 400px;
     position: relative;
     z-index: 5;
+    -webkit-animation: fadeInDown 1.5s ease-out, glow 3s ease-in-out infinite;
     animation: fadeInDown 1.5s ease-out, glow 3s ease-in-out infinite;
+    -webkit-filter: drop-shadow(0 0 10px var(--pastel-pink));
     filter: drop-shadow(0 0 10px var(--pastel-pink));
 }
 
@@ -145,7 +160,9 @@ body {
 .decor-img {
     width: 30%;
     max-width: 600px;
+    -webkit-animation: sway 8s ease-in-out infinite;
     animation: sway 8s ease-in-out infinite;
+    -webkit-filter: drop-shadow(0 0 8px var(--pastel-white));
     filter: drop-shadow(0 0 8px var(--pastel-white));
 }
 
@@ -156,7 +173,9 @@ body {
     transform: translateX(-50%);
     width: 60%;
     z-index: 10;
+    -webkit-animation: float 6s ease-in-out infinite;
     animation: float 6s ease-in-out infinite;
+    -webkit-filter: drop-shadow(0 0 8px var(--pastel-blue));
     filter: drop-shadow(0 0 8px var(--pastel-blue));
 }
 
@@ -174,6 +193,7 @@ body {
     right: 590px;
     transform: translateY(-50%);
     z-index: -2;
+    -webkit-animation: floatSlowlyRight 100s linear infinite;
     animation: floatSlowlyRight 100s linear infinite; 
 }
 
@@ -183,6 +203,7 @@ body {
     left: -150px;
     width: 40%; 
     z-index: -2;
+    -webkit-animation: floatSlowlyLeft 900s linear infinite;
     animation: floatSlowlyLeft 900s linear infinite; 
 }
 
@@ -199,6 +220,7 @@ body {
    ========================================= */
 .typing-message-container {
     background-color: rgba(255, 255, 255, 0.5);
+    -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
     border-radius: 20px;
     padding: 1rem 1.5rem;
@@ -230,6 +252,7 @@ body {
 
 .greeting-bar {
     background-color: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     border-radius: 20px;
     padding: 1rem 1.5rem;
@@ -240,6 +263,7 @@ body {
     text-align: center;
     transform: translateY(20px);
     opacity: 0;
+    -webkit-animation: fadeInUp 1s ease-out forwards 0.5s;
     animation: fadeInUp 1s ease-out forwards 0.5s;
     border: 2px solid rgba(255, 255, 255, 0.8);
 }
@@ -275,6 +299,7 @@ body {
     border-radius: 20px;
     padding: 15px;
     box-shadow: 0 5px 20px rgba(216, 191, 216, 0.3);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
@@ -285,6 +310,7 @@ body {
     gap: 1rem;
     width: 100%;
     min-height: 120px;
+    -webkit-transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
     flex-shrink: 0;
     opacity: 0;
@@ -300,10 +326,12 @@ body {
     position: relative;
     transform: translateY(0) scale(1);
     pointer-events: all;
+    -webkit-animation: slideAppear 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
     animation: slideAppear 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
 .emotion-slide.exit {
+    -webkit-animation: slideExit 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
     animation: slideExit 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
@@ -320,10 +348,12 @@ body {
     font-size: 1.2rem;
     color: var(--dark-blue);
     margin: 0 12px;
+    -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 0 5px 15px rgba(216, 191, 216, 0.6);
     z-index: 10;
     position: relative;
+    -webkit-appearance: none; /* Fixes iOS button styling */
 }
 
 .carousel-arrow:hover {
@@ -344,6 +374,7 @@ body {
     border-radius: 50%;
     background: rgba(216, 191, 216, 0.2);
     z-index: -1;
+    -webkit-animation: pulse 2s infinite;
     animation: pulse 2s infinite;
 }
 
@@ -360,6 +391,7 @@ body {
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    -webkit-transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     position: relative;
     box-shadow: 0 2px 5px rgba(216, 191, 216, 0.4);
@@ -374,6 +406,7 @@ body {
     background: rgba(216, 191, 216, 0.3);
     z-index: -1;
     transform: scale(0);
+    -webkit-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
 }
 
@@ -397,12 +430,14 @@ body {
     padding: 0.8rem 1.6rem;
     font-size: 1.2rem;
     cursor: pointer;
+    -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    font-family: 'KTEGAKI', 'Arial', sans-serif;
+    font-family: 'KTEGAKI', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
     position: relative;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(216, 191, 216, 0.3);
     color: var(--dark-blue);
+    -webkit-appearance: none; /* Fixes iOS button styling */
 }
 
 .emotion-btn:hover {
@@ -418,6 +453,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+    -webkit-transition: left 0.6s ease;
     transition: left 0.6s ease;
 }
 
@@ -434,6 +470,7 @@ body {
     background-color: rgba(216, 191, 216, 0.3);
     box-shadow: 0 7px 15px rgba(216, 191, 216, 0.5);
     border-color: rgba(216, 191, 216, 0.8);
+    -webkit-animation: wiggle 0.5s ease;
     animation: wiggle 0.5s ease;
 }
 
@@ -455,8 +492,10 @@ body {
     font-size: 1rem;
     box-shadow: 0 4px 10px rgba(216, 191, 216, 0.4);
     position: relative;
+    -webkit-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(216, 191, 216, 0.5);
+    -webkit-animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -473,6 +512,7 @@ body {
     cursor: pointer;
     font-size: 14px;
     line-height: 1;
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     border: 1px solid rgba(216, 191, 216, 0.3);
 }
@@ -486,12 +526,6 @@ body {
 /* =========================================
    9. HEART CONTAINER & EFFECTS
    ========================================= */
-:root {
-    --dim-x: 80px;
-    --dim-y: 70px;
-    --cruve-height: 20px; 
-}
-
 .heart-container {
     display: flex;
     justify-content: center;
@@ -508,12 +542,16 @@ body {
 
 .heart-wrap {
     cursor: pointer;
+    -webkit-perspective: 200px;
     perspective: 200px;
+    -webkit-filter: drop-shadow(0px 10px 10px rgba(174, 196, 238, 0.5));
     filter: drop-shadow(0px 10px 10px rgba(174, 196, 238, 0.5));
+    -webkit-transition: filter 0.3s ease;
     transition: filter 0.3s ease;
 }
 
 .heart-wrap:hover {
+    -webkit-filter: drop-shadow(0px 12px 15px rgba(174, 196, 238, 0.7));
     filter: drop-shadow(0px 12px 15px rgba(174, 196, 238, 0.7));
 }
 
@@ -522,9 +560,12 @@ body {
     height: var(--dim-y);
     width: var(--dim-x);
     overflow: hidden;
+    -webkit-clip-path: url(#myPath);
     clip-path: url(#myPath);
     background-image: radial-gradient(#c9d8f5 60%, #afc4ee);
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    -webkit-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
     transform-origin: center;
 }
@@ -540,6 +581,7 @@ body {
     width: var(--dim-x);
     background-color: var(--emotion-color);
     z-index: 5;
+    -webkit-transition: background-color 0.5s ease, height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     transition: background-color 0.5s ease, height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); 
 }
 
@@ -548,11 +590,13 @@ body {
     bottom: calc(-1 * var(--cruve-height));
     width: var(--dim-x);
     height: var(--cruve-height);
+    -webkit-transition: bottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     transition: bottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); 
 }
 
 .wave {
     fill: var(--emotion-color);
+    -webkit-transition: fill 0.5s ease;
     transition: fill 0.5s ease;
 }
 
@@ -573,21 +617,28 @@ body {
 }
 
 .curve use {
+    -webkit-animation: move 3s cubic-bezier(.55,.5,.45,.5) infinite;
     animation: move 3s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 
 .curve use:nth-child(1) {
+    -webkit-animation-duration: 5s;
     animation-duration: 5s;
+    -webkit-animation-delay: -0.5s;
     animation-delay: -0.5s;
 }
 
 .curve use:nth-child(2) {
+    -webkit-animation-duration: 7s;
     animation-duration: 7s;
+    -webkit-animation-delay: -2s;
     animation-delay: -2s;
 }
 
 .curve use:nth-child(3) {
+    -webkit-animation-duration: 4s;
     animation-duration: 4s;
+    -webkit-animation-delay: -1s;
     animation-delay: -1s;
 }
 
@@ -597,6 +648,7 @@ body {
     border-radius: 50%;
     width: 8px;
     height: 8px;
+    -webkit-animation: bubblerise 4s ease-in infinite;
     animation: bubblerise 4s ease-in infinite;
     z-index: 10;
     box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
@@ -621,6 +673,7 @@ body {
     height: 100%;
     background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1%, transparent 15%);
     background-size: 20px 20px;
+    -webkit-animation: sparkle 2s linear infinite;
     animation: sparkle 2s linear infinite;
     opacity: 0;
     pointer-events: none;
@@ -666,6 +719,7 @@ body {
     padding: 1rem;
     border-radius: 1rem;
     z-index: 999;
+    -webkit-transition: transform 0.4s ease;
     transition: transform 0.4s ease;
 }
 
@@ -694,8 +748,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-transition: background 0.3s;
     transition: background 0.3s;
     cursor: pointer;
+    -webkit-appearance: none; /* Fixes iOS button styling */
 }
 
 .vinyl {
@@ -703,12 +759,14 @@ body {
     height: 70px;
     background: radial-gradient(circle, #f8bbd0 40%, #81d4fa 100%);
     border-radius: 50%;
+    -webkit-animation: spin 0s linear infinite;
     animation: spin 0s linear infinite;
     margin-bottom: 0.8rem;
     cursor: pointer;
 }
 
 .vinyl.spinning {
+    -webkit-animation: spin 4s linear infinite;
     animation: spin 4s linear infinite;
 }
 
@@ -726,7 +784,9 @@ body {
     font-size: 1rem;
     color: #f48fb1;
     cursor: pointer;
+    -webkit-transition: background 0.3s;
     transition: background 0.3s;
+    -webkit-appearance: none; /* Fixes iOS button styling */
 }
 
 .controls button:hover, .volume-controls button:hover {
@@ -766,9 +826,19 @@ body {
 /* =========================================
    12. ANIMATIONS
    ========================================= */
+@-webkit-keyframes float {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(-15px) translateX(-50%); }
+}
+
 @keyframes float {
     0%, 100% { transform: translateY(0) translateX(-50%); }
     50% { transform: translateY(-15px) translateX(-50%); }
+}
+
+@-webkit-keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
 }
 
 @keyframes sway {
@@ -776,13 +846,28 @@ body {
     50% { transform: rotate(2deg); }
 }
 
+@-webkit-keyframes glow {
+    0%, 100% { -webkit-filter: drop-shadow(0 0 10px var(--pastel-pink)); filter: drop-shadow(0 0 10px var(--pastel-pink)); }
+    50% { -webkit-filter: drop-shadow(0 0 20px var(--pastel-purple)); filter: drop-shadow(0 0 20px var(--pastel-purple)); }
+}
+
 @keyframes glow {
-    0%, 100% { filter: drop-shadow(0 0 10px var(--pastel-pink)); }
-    50% { filter: drop-shadow(0 0 20px var(--pastel-purple)); }
+    0%, 100% { -webkit-filter: drop-shadow(0 0 10px var(--pastel-pink)); filter: drop-shadow(0 0 10px var(--pastel-pink)); }
+    50% { -webkit-filter: drop-shadow(0 0 20px var(--pastel-purple)); filter: drop-shadow(0 0 20px var(--pastel-purple)); }
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@-webkit-keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
@@ -791,9 +876,19 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+@-webkit-keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@-webkit-keyframes floatSlowlyLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 200px)); }
 }
 
 @keyframes floatSlowlyLeft {
@@ -801,9 +896,19 @@ body {
     to { transform: translateX(calc(100vw + 200px)); }
 }
 
+@-webkit-keyframes floatSlowlyRight {
+    from { transform: translateX(0) translateY(-50%); }
+    to { transform: translateX(-100px) translateY(-50%); }
+}
+
 @keyframes floatSlowlyRight {
     from { transform: translateX(0) translateY(-50%); }
     to { transform: translateX(-100px) translateY(-50%); }
+}
+
+@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
 }
 
 @keyframes typing {
@@ -811,9 +916,19 @@ body {
     to { width: 100% }
 }
 
+@-webkit-keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 @keyframes blink-caret {
     from, to { opacity: 1; }
     50% { opacity: 0; }
+}
+
+@-webkit-keyframes pulse {
+    0% { opacity: 0.7; transform: scale(0.5); }
+    100% { opacity: 0; transform: scale(1.5); }
 }
 
 @keyframes pulse {
@@ -821,14 +936,35 @@ body {
     100% { opacity: 0; transform: scale(1.5); }
 }
 
+@-webkit-keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
 @keyframes wave {
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
 }
 
+@-webkit-keyframes rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-100px); opacity: 0; }
+}
+
 @keyframes rise {
     0% { transform: translateY(0); opacity: 0.8; }
     100% { transform: translateY(-100px); opacity: 0; }
+}
+
+@-webkit-keyframes starFly {
+    0% { 
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(var(--end-x), var(--end-y)) rotate(var(--rotation)) scale(0);
+        opacity: 0;
+    }
 }
 
 @keyframes starFly {
@@ -842,8 +978,23 @@ body {
     }
 }
 
+@-webkit-keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
 @keyframes spin {
     100% { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes slideAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes slideAppear {
@@ -854,6 +1005,17 @@ body {
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+@-webkit-keyframes slideExit {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
     }
 }
 
@@ -868,6 +1030,15 @@ body {
     }
 }
 
+@-webkit-keyframes move {
+    0% {
+        transform: translateX(-90px);
+    }
+    100% {
+        transform: translateX(85px);
+    }
+}
+
 @keyframes move {
     0% {
         transform: translateX(-90px);
@@ -877,12 +1048,47 @@ body {
     }
 }
 
+@-webkit-keyframes shine {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
 @keyframes shine {
     0% {
         background-position: -100% 0;
     }
     100% {
         background-position: 200% 0;
+    }
+}
+
+@-webkit-keyframes bubblerise {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    40% {
+        transform: translateY(-20px) translateX(-5px) scale(0.8);
+        opacity: 0.8;
+    }
+    60% {
+        transform: translateY(-35px) translateX(5px) scale(0.6);
+        opacity: 0.6;
+    }
+    80% {
+        transform: translateY(-50px) translateX(-3px) scale(0.4);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-60px) translateX(0) scale(0.2);
+        opacity: 0;
     }
 }
 
@@ -912,6 +1118,20 @@ body {
     }
 }
 
+@-webkit-keyframes blendshine {
+    0% {
+        opacity: 0.7;
+        transform: scale(0.2);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
+}
+
 @keyframes blendshine {
     0% {
         opacity: 0.7;
@@ -926,15 +1146,37 @@ body {
     }
 }
 
+@-webkit-keyframes sparkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.5; }
+}
+
 @keyframes sparkle {
     0%, 100% { opacity: 0; }
     50% { opacity: 0.5; }
+}
+
+@-webkit-keyframes wiggle {
+    0%, 100% { transform: translateY(-7px) scale(1.08) rotate(0deg); }
+    25% { transform: translateY(-7px) scale(1.08) rotate(-3deg); }
+    75% { transform: translateY(-7px) scale(1.08) rotate(3deg); }
 }
 
 @keyframes wiggle {
     0%, 100% { transform: translateY(-7px) scale(1.08) rotate(0deg); }
     25% { transform: translateY(-7px) scale(1.08) rotate(-3deg); }
     75% { transform: translateY(-7px) scale(1.08) rotate(3deg); }
+}
+
+@-webkit-keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 @keyframes popIn {
@@ -1005,6 +1247,30 @@ body {
     }
 }
 
+/* Safari-specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Fix for 100vh issue on iOS Safari */
+    .container {
+        height: -webkit-fill-available;
+    }
+    
+    /* Improves touch events on iOS */
+    .carousel-arrow,
+    .emotion-btn,
+    .toggle-button {
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+    
+    /* Better performance for Safari animations */
+    .vinyl.spinning,
+    .heart,
+    .curve use {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
 @media screen and (max-width: 480px) {
     h2 {
         font-size: 1.4rem;
@@ -1055,8 +1321,37 @@ body {
         height: 50px;
     }
     
+    /* Make buttons easier to tap on small screens */
+    .emotion-btn, 
+    .carousel-arrow,
+    .remove-emotion {
+        min-height: 44px; /* Apple's recommended minimum touch target size */
+    }
+    
+    /* Adjust heart size for small screens using the CSS variables */
     :root {
-        --dim-x: 60px;
-        --dim-y: 50px;
+        --dim-x: min(60px, 15vw);
+        --dim-y: min(50px, 12.5vw);
+        --cruve-height: min(15px, 3.75vw);
+    }
+}
+
+/* iPhone X and newer with notches */
+@media screen and (max-width: 480px) and (min-height: 800px) {
+    .container {
+        padding-top: env(safe-area-inset-top, 2rem);
+        padding-bottom: env(safe-area-inset-bottom, 2rem);
+        padding-left: env(safe-area-inset-left, 1rem);
+        padding-right: env(safe-area-inset-right, 1rem);
+    }
+    
+    .music-wrapper {
+        bottom: max(0.5rem, env(safe-area-inset-bottom, 0.5rem));
+        left: max(0.5rem, env(safe-area-inset-left, 0.5rem));
+    }
+    
+    .toggle-button {
+        top: max(0.5rem, env(safe-area-inset-top, 0.5rem));
+        left: max(0.5rem, env(safe-area-inset-left, 0.5rem));
     }
 }
