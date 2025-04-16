@@ -726,12 +726,6 @@ body {
     transform: translateX(-120%);
 }
 
-.music-player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .toggle-button {
     position: fixed;
     top: 1rem;
@@ -752,76 +746,6 @@ body {
     cursor: pointer;
     -webkit-appearance: none; /* Fixes iOS button styling */
 }
-
-.vinyl {
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle, #f8bbd0 40%, #81d4fa 100%);
-    border-radius: 50%;
-    -webkit-animation: spin 0s linear infinite;
-    animation: spin 0s linear infinite;
-    margin-bottom: 0.8rem;
-    cursor: pointer;
-}
-
-.vinyl.spinning {
-    -webkit-animation: spin 4s linear infinite;
-    animation: spin 4s linear infinite;
-}
-
-.controls, .volume-controls {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin: 0.3rem 0;
-}
-
-.controls button, .volume-controls button {
-    border: none;
-    padding: 0.4rem;
-    border-radius: 50%;
-    font-size: 1rem;
-    color: #f48fb1;
-    cursor: pointer;
-    -webkit-transition: background 0.3s;
-    transition: background 0.3s;
-    -webkit-appearance: none; /* Fixes iOS button styling */
-}
-
-.controls button:hover, .volume-controls button:hover {
-    color: #ffc7e4;
-}
-
-.progress-container {
-    background: #ccc;
-    height: 6px;
-    border-radius: 4px;
-    overflow: hidden;
-    width: 90%;
-    cursor: pointer;
-    margin: 0.5rem 0;
-}
-
-.progress {
-    background: #f48fb1;
-    height: 100%;
-    width: 0%;
-}
-
-.time-display {
-    font-size: 0.75rem;
-    color: #555;
-    margin-bottom: 0.3rem;
-}
-
-.track-info {
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #2c0079;
-    text-align: center;
-    padding: 0 0.5rem;
-}
-
 /* =========================================
    12. ANIMATIONS
    ========================================= */
@@ -1259,14 +1183,6 @@ body {
     .toggle-button {
         cursor: pointer;
         touch-action: manipulation;
-    }
-    
-    /* Better performance for Safari animations */
-    .vinyl.spinning,
-    .heart,
-    .curve use {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
     }
 }
 
